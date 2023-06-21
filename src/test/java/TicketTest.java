@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 
 public class TicketTest {
    Ticket ticket1 = new Ticket(203, 2655, "KGD", "LED", 145);
@@ -34,8 +33,9 @@ public class TicketTest {
         repository.addTicket(ticket4);
         repository.addTicket(ticket5);
         repository.removeTicket(1);
-        Ticket[] exp = {ticket1, ticket2, ticket3, ticket4};
+        Ticket[] exp = {ticket1, ticket2, ticket4, ticket5};
         Ticket[] act = repository.getAllTickets();
+        Assertions.assertArrayEquals(exp,act);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class TicketTest {
     }
 
     @Test
-    public void shouldSearchTickets() throws NotFoundException {
+    public void shouldSearchTicketsAndSort() throws NotFoundException {
         TicketRepository repository = new TicketRepository();
         repository.addTicket(ticket1);
         repository.addTicket(ticket2);
